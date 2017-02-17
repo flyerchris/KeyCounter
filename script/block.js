@@ -14,15 +14,15 @@ window.onload=function(){
 			gl.depthFunc(gl.LEQUAL);
 			gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
 			program=gl.createProgram();
-			setshader("vs",document.getElementById("vshader").text);
-			setshader("fs",document.getElementById("fshader").text);
+			setShader("vs",document.getElementById("vshader").text);
+			setShader("fs",document.getElementById("fshader").text);
 			gl.linkProgram(program);
 			gl.useProgram(program);
 			loadImg("img/keyboard.png");
 	}
 }
 
-function setshader(type,tx){
+function setShader(type,tx){
 	var shader;
 	if(type=="vs"){
 		shader=gl.createShader(gl.VERTEX_SHADER);
