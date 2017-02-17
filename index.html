@@ -2,7 +2,8 @@
 <html>
 <head><title>keyboard</title></head>
 <body>
-	<script src="script/block.js"></script>
+<script src="script/block.js"></script>
+
 <script src="script/keyvalue.js"></script>
 <script id="vshader" type="x-shader/x-vertex">
 	attribute vec2 vpos;
@@ -12,7 +13,6 @@
 		gl_Position=vec4(vpos,0,1);
 	}
 </script>
-
 <script id="fshader" type="x-shader/x-fragment">
 	uniform sampler2D us;
 	uniform sampler2D fre;
@@ -41,7 +41,6 @@
 </script>
 
 <p style="text-align:center">
-	<!-- <img id="oripic" src="ow.jpg" style="width:48%;height:auto;"></img> -->
 	<canvas id="transpic"></canvas>
 </p>
 <div style="text-align:center;">
