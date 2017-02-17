@@ -1,0 +1,52 @@
+<!DOCTYPE HTML>
+<html>
+<head><title>keyboard</title></head>
+<body>
+	<script src="script/block.js"></script>
+<script src="script/keyvalue.js"></script>
+<script id="vshader" type="x-shader/x-vertex">
+	attribute vec2 vpos;
+	varying vec2 fpos;
+	void main(){
+		fpos=vpos;
+		gl_Position=vec4(vpos,0,1);
+	}
+</script>
+
+<script id="fshader" type="x-shader/x-fragment">
+	uniform sampler2D us;
+	uniform sampler2D fre;
+	varying highp vec2 fpos;
+	highp float block=106.75/1600.0;
+	
+	void main(){
+		highp float x=(fpos.x+1.0)/2.0;
+		highp float y=(1.0-fpos.y)/2.0;
+		highp vec4 color=texture2D(us,vec2(x,y));
+		if(y<0.2 && x<0.8656 && color.x>0.5){
+			gl_FragColor=texture2D(fre,vec2(x/block/47.0,0.0));
+		}else if(y>0.2 && y<0.4 && x>0.1 && color.x>0.5){
+			if(x>0.1+block*12.0)x=0.1+block*12.0;
+			gl_FragColor=texture2D(fre,vec2((x-0.1)/block/47.0+13.0/47.0,0.0));
+		}else if(y>0.4 && y<0.6 && x>0.1175 && x<0.849 &&color.x>0.5){
+			gl_FragColor=texture2D(fre,vec2((x-0.1175)/block/47.0+26.0/47.0,0.0));
+		}else if(y>0.6 && y<0.8 && x>0.15 && x<0.815625 && color.x>0.5){
+			gl_FragColor=texture2D(fre,vec2((x-0.15)/block/47.0+37.0/47.0,0.0));
+		}
+		else{
+			gl_FragColor=color;
+		}
+		
+	}
+</script>
+
+<p style="text-align:center">
+	<!-- <img id="oripic" src="ow.jpg" style="width:48%;height:auto;"></img> -->
+	<canvas id="transpic"></canvas>
+</p>
+<div style="text-align:center;">
+	<textarea id="input" style="width:80%;height:200px;font-size:20px" onkeyup="reRender()">
+Hideo Kojima has revealed to IGN Death Stranding is not a horror game and that he is done developing horror games.</textarea>
+</div>
+</body>
+</html>
